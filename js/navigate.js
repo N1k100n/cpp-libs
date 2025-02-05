@@ -14,6 +14,11 @@ document.querySelector(".menu-button").addEventListener("click", () => {
 var btns = document.querySelector(".navigate").contentDocument.querySelectorAll("button");
 btns.forEach(function(btn) {
   btn.addEventListener('click', function(e) {
+    if (document.querySelector(".navigate").style.display != "") {
+      document.querySelector(".navigate").style.display = "";
+      document.querySelector(".navigate").style.position = "";
+      document.querySelector(".navigate").style.width = "";
+    }
     document.querySelector(".viewer").contentDocument.location.href = (window.location.origin + "/" + e.target.getAttribute("href"));
-  })
+  });
 })
