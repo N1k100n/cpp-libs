@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C++ Libs Doc</title>
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <button class="menu-button">
+      <img src="image/menu-button.svg">
+    </button>
+    <div class="translate-button">
+      <img src="image/translate-button.svg">
+      <div id="google_translate_element"></div>
+    </div>
+    <a class="home-button" href="index.html">
+      <img src="image/cpp-logo.svg">
+      <span>Standard Library</span>
+    </a>
+  </header>
+  <div>
+    <iframe class="navigate" src="navigate.html" frameborder="0"></iframe>
+    <iframe class="viewer" src="main.html" frameborder="0"></iframe>    
+  </div>
+</body>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en'
+  }, 'google_translate_element');
+}
+</script>
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> 
+<script src="js/navigate.js"></script>
+</html>

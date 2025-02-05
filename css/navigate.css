@@ -37,7 +37,10 @@ body > nav > div > * {
   color: #c9c9c9;
 }
 
-body > nav > div > a {
+body > nav > div > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   font-weight: 200;
   padding-left: 10px;
 }
