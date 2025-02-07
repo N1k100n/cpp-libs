@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Mutex library (C++11)</h1>
+        <hr>
+        <p>The &lt;mutex&gt; header provides a way to work with mutexes in C++. A mutex (mutual exclusion) is a
+            synchronization primitive that can be used to protect shared data from being accessed by
+            multiple threads simultaneously. The &lt;mutex&gt; header defines a number of classes and
+            functions for creating and using mutexes.</p>
+
+        <h2>Key components in &lt;mutex&gt;</h2>
+        <ul>
+            <li><b>Mutex types:</b> Classes that represent mutexes, such as <code>std::mutex</code> (basic
+                non-recursive mutex), <code>std::recursive_mutex</code> (recursive mutex),
+                <code>std::timed_mutex</code> (mutex with timeout), and
+                <code>std::shared_mutex</code> (shared mutex for read/write access).</li>
+            <li><b>Lock types:</b> Classes that represent locks on mutexes, such as
+                <code>std::lock_guard</code> (for RAII-style exclusive lock), <code>std::unique_lock</code> (for
+                more flexible exclusive lock), and <code>std::shared_lock</code> (for shared read lock).
+            </li>
+            <li><b>Lock functions:</b> Functions for locking and unlocking mutexes, such as <code>lock()</code>,
+                <code>try_lock()</code>, and <code>unlock()</code>. However, it's generally recommended to use
+                RAII-style lock classes instead of directly calling these functions.</li>
+            <li><b>Call once:</b> The <code>std::call_once</code> function and <code>std::once_flag</code> class can
+                be used to ensure that a function is called only once, even if multiple threads try to
+                call it simultaneously.</li>
+        </ul>
+
+        <h3>How to use &lt;mutex&gt;</h3>
+        <p>To use &lt;mutex&gt;, you need to include the &lt;mutex&gt; header file. You can then create an
+            object of one of the mutex types and use the lock classes to protect shared data.</p>
+
+        <h3>Example: Using std::mutex and std::lock_guard</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;mutex&gt;
+#include &lt;thread&gt;
+
+std::mutex m; // Create a mutex object
+int shared_data = 0;
+
+void thread_function() {
+    for (int i = 0; i &lt; 100000; ++i) {
+        std::lock_guard&lt;std::mutex&gt; lock(m); // Acquire the lock
+        shared_data++; // Access the shared data
+    } // The lock is automatically released when the lock_guard object goes out of scope
+}
+
+int main() {
+    std::thread t1(thread_function);
+    std::thread t2(thread_function);
+
+    t1.join();
+    t2.join();
+
+    std::cout &lt;&lt; "Shared data value: " &lt;&lt; shared_data &lt;&lt; std::endl; // Output: Shared data value: 200000
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using std::recursive_mutex</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;mutex&gt;
+
+std::recursive_mutex m;
+
+void recursive_function() {
+    std::lock_guard&lt;std::recursive_mutex&gt; lock(m);
+    std::cout &lt;&lt; "Entering recursive function" &lt;&lt; std::endl;
+    recursive_function(); // Recursive call
+    std::cout &lt;&lt; "Exiting recursive function" &lt;&lt; std::endl;
+}
+
+int main() {
+    recursive_function();
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;mutex&gt;</h3>
+        <p>&lt;mutex&gt; is useful when you need to protect shared data from being accessed by multiple
+            threads simultaneously. It is an essential tool for multithreaded programming. However, using
+            mutexes can also introduce overhead, so they should only be used when necessary. It is important
+            to use RAII-style lock classes like <code>std::lock_guard</code> and <code>std::unique_lock</code> to
+            ensure that mutexes are always properly locked and unlocked, even in the presence of exceptions.
+        </p>
+
+        <p>It's important to choose the appropriate mutex type for your needs. <code>std::mutex</code> is
+            suitable for most common cases. <code>std::recursive_mutex</code> should be used when a thread may
+            need to acquire the same mutex multiple times. <code>std::timed_mutex</code> can be used when you
+            need to limit the amount of time that a thread waits for a mutex.
+            <code>std::shared_mutex</code> is useful when you have shared data that can be read by multiple
+            threads simultaneously, but can only be modified by one thread at a time.</p>
+    </main>
+</div>
+
+</html>

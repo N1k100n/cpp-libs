@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Output stream library</h1>
+        <hr>
+        <p>The &lt;ostream&gt; header defines the <code>std::ostream</code> class, which is the base class for all
+            output stream classes in C++. It provides a number of methods for writing data to output streams,
+            such as the standard output stream (<code>std::cout</code>), the standard error stream
+            (<code>std::cerr</code>), and files. The ostream class is part of the iostream library, which is
+            used for performing input and output operations in C++.</p>
+
+        <h2>Key features of std::ostream</h2>
+        <ul>
+            <li><b>Formatted output:</b> <code>std::ostream</code> provides a number of methods for formatting
+                output, such as setting the width of an output field, setting the precision of
+                floating-point numbers, and inserting manipulators.</li>
+            <li><b>Unformatted output:</b> <code>std::ostream</code> also provides methods for writing
+                unformatted data to output streams, such as writing raw characters or blocks of memory.
+            </li>
+            <li><b>Error handling:</b> <code>std::ostream</code> provides methods for checking the state of an
+                output stream and for handling errors that may occur during output operations.</li>
+            <li><b>Extensibility:</b> You can create your own custom output stream classes by inheriting from
+                <code>std::ostream</code>.</li>
+        </ul>
+
+        <h3>How to use &lt;ostream&gt;</h3>
+        <p>To use &lt;ostream&gt;, you need to include the &lt;iostream&gt; header file. You can then use the
+            methods of the <code>std::ostream</code> class to write data to output streams.</p>
+
+        <h3>Example: Writing formatted data to the standard output stream</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;iomanip&gt; // For manipulators like std::setw and std::setprecision
+
+int main() {
+    int age = 30;
+    double height = 1.75;
+    std::string name = "John";
+
+    std::cout &lt;&lt; "Name: " &lt;&lt; std::setw(10) &lt;&lt; name &lt;&lt; std::endl; // Set width for name
+    std::cout &lt;&lt; "Age: " &lt;&lt; age &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Height: " &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; height &lt;&lt; std::endl; // Format height
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Writing unformatted data to the standard output stream</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() {
+    char buffer[] = "This is a string of characters.";
+    std::cout.write(buffer, sizeof(buffer) - 1); // Write the string to the standard output stream
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;ostream&gt;</h3>
+        <p>&lt;ostream&gt; is useful whenever you need to write data to output streams in C++. It provides a
+            number of tools that can be used to format output, handle errors, and perform other output-related
+            operations. It is often used in conjunction with the &lt;iostream&gt; header, which provides a
+            number of classes and objects for working with input and output streams.</p>
+
+        <p>It's important to be aware of the different methods that are available for writing data to output
+            streams, as well as the various manipulators that can be used to format output. Some of the most
+            commonly used methods include <code>operator&lt;&lt;</code> (for inserting data into the stream),
+            <code>put()</code> (for writing a single character), <code>write()</code> (for writing a block of
+            memory), and <code>flush()</code> (for flushing the output buffer).</p>
+    </main>
+</div>
+
+</html>

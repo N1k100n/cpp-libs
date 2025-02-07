@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Complex number library</h1>
+        <hr>
+        <p>The &lt;complex&gt; header provides a way to work with complex numbers in C++. The
+            <code>std::complex</code> class template represents a complex number, which is a number that has
+            both a real and an imaginary part. The &lt;complex&gt; header also provides a number of functions
+            for performing mathematical operations on complex numbers, such as addition, subtraction,
+            multiplication, division, and exponentiation.</p>
+
+        <h2>Key features of std::complex</h2>
+        <ul>
+            <li><b>Real and imaginary parts:</b> A <code>std::complex</code> object has two parts: a real part and an
+                imaginary part, both of which are floating-point numbers.</li>
+            <li><b>Mathematical operations:</b> <code>std::complex</code> supports a wide range of mathematical
+                operations, including arithmetic operations, trigonometric functions, exponential functions,
+                and logarithmic functions.</li>
+            <li><b>Polar form:</b> You can represent a complex number in polar form, which consists of a
+                magnitude (or modulus) and an angle (or argument).</li>
+            <li><b>Convenient literals:</b> C++ provides user-defined literals for complex numbers (e.g.,
+                <code>2.5 + 3.2i</code>).</li>
+        </ul>
+
+        <h3>How to use &lt;complex&gt;</h3>
+        <p>To use &lt;complex&gt;, you need to include the &lt;complex&gt; header file. You can then create a
+            <code>std::complex</code> object by specifying the real and imaginary parts.</p>
+
+        <h3>Example: Creating and manipulating complex numbers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;complex&gt;
+
+int main() {
+    std::complex&lt;double&gt; z1(2.0, 3.0); // Create a complex number with real part 2 and imaginary part 3
+    std::complex&lt;double&gt; z2 = 4.5 + 1.2i; // Using complex literal
+
+    std::cout &lt;&lt; "z1 = " &lt;&lt; z1 &lt;&lt; std::endl; // Output: z1 = (2,3)
+    std::cout &lt;&lt; "z2 = " &lt;&lt; z2 &lt;&lt; std::endl; // Output: z2 = (4.5,1.2)
+
+    std::complex&lt;double&gt; z3 = z1 + z2; // Add two complex numbers
+    std::cout &lt;&lt; "z1 + z2 = " &lt;&lt; z3 &lt;&lt; std::endl; // Output: z1 + z2 = (6.5,4.2)
+
+    double real_part = z1.real(); // Get the real part of z1
+    double imag_part = z1.imag(); // Get the imaginary part of z1
+
+    std::cout &lt;&lt; "Real part of z1: " &lt;&lt; real_part &lt;&lt; std::endl; // Output: Real part of z1: 2
+    std::cout &lt;&lt; "Imaginary part of z1: " &lt;&lt; imag_part &lt;&lt; std::endl; // Output: Imaginary part of z1: 3
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using complex number functions</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;complex&gt;
+#include &lt;cmath&gt;
+
+int main() {
+    std::complex&lt;double&gt; z(2.0, 3.0);
+
+    double magnitude = std::abs(z); // Get the magnitude of z
+    double angle = std::arg(z); // Get the angle of z
+
+    std::cout &lt;&lt; "Magnitude of z: " &lt;&lt; magnitude &lt;&lt; std::endl; // Output: Magnitude of z: 3.60555
+    std::cout &lt;&lt; "Angle of z: " &lt;&lt; angle &lt;&lt; std::endl; // Output: Angle of z: 0.982794
+
+    std::complex&lt;double&gt; z_conj = std::conj(z); // Get the complex conjugate of z
+    std::cout &lt;&lt; "Complex conjugate of z: " &lt;&lt; z_conj &lt;&lt; std::endl; // Output: Complex conjugate of z: (2,-3)
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;complex&gt;</h3>
+        <p>&lt;complex&gt; is useful when you need to work with complex numbers in C++, such as in scientific or
+            engineering applications. It provides a convenient and efficient way to perform mathematical
+            operations on complex numbers.</p>
+
+        <p>It's important to be aware of the different functions and operations that are available for working
+            with complex numbers. Some of the most commonly used functions include <code>std::abs()</code> (for
+            magnitude), <code>std::arg()</code> (for angle), <code>std::conj()</code> (for complex conjugate),
+            <code>std::sin()</code>, <code>std::cos()</code>, <code>std::exp()</code>, and <code>std::log()</code>.</p>
+    </main>
+</div>
+
+</html>

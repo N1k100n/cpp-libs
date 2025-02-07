@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Filesystem library (C++17)</h1>
+        <hr>
+        <p>The &lt;filesystem&gt; header provides a way to work with files and directories in a portable way.
+            It defines a number of classes and functions for performing file system operations, such as
+            creating, deleting, renaming, and copying files and directories, as well as for querying file
+            system information.</p>
+
+        <h2>Key concepts and components in &lt;filesystem&gt;</h2>
+        <ul>
+            <li><b>Paths:</b> Objects of the <code>std::filesystem::path</code> class that represent file and
+                directory paths.</li>
+            <li><b>File status:</b> Objects of the <code>std::filesystem::file_status</code> class that represent
+                the status of a file or directory, such as whether it exists, whether it is a regular
+                file, a directory, or a symbolic link.</li>
+            <li><b>Directory iterators:</b> Objects of the
+                <code>std::filesystem::directory_iterator</code> and
+                <code>std::filesystem::recursive_directory_iterator</code> classes that can be used to
+                iterate over the entries in a directory.</li>
+            <li><b>Functions:</b> Functions for performing file system operations, such as
+                <code>std::filesystem::create_directory</code> (for creating a directory),
+                <code>std::filesystem::remove</code> (for deleting a file or directory),
+                <code>std::filesystem::rename</code> (for renaming a file or directory), and
+                <code>std::filesystem::copy</code> (for copying a file or directory).</li>
+        </ul>
+
+        <h3>How to use &lt;filesystem&gt;</h3>
+        <p>To use &lt;filesystem&gt;, you need to include the &lt;filesystem&gt; header file. You can then create
+            objects of the classes defined in &lt;filesystem&gt; and use their methods to perform file
+            system operations.</p>
+
+        <h3>Example: Working with paths</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;filesystem&gt;
+
+int main() {
+    std::filesystem::path p("./my_directory/my_file.txt"); // Create a path object
+
+    std::cout &lt;&lt; "Path: " &lt;&lt; p &lt;&lt; std::endl; // Output: Path: my_directory/my_file.txt
+    std::cout &lt;&lt; "Filename: " &lt;&lt; p.filename() &lt;&lt; std::endl; // Output: Filename: my_file.txt
+    std::cout &lt;&lt; "Parent directory: " &lt;&lt; p.parent_path() &lt;&lt; std::endl; // Output: Parent directory: my_directory
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Iterating over directory entries</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;filesystem&gt;
+
+int main() {
+    std::filesystem::path p("./my_directory"); // Create a path object for a directory
+
+    for (const auto& entry : std::filesystem::directory_iterator(p)) { // Iterate over the directory entries
+        std::cout &lt;&lt; entry.path() &lt;&lt; std::endl; // Print the path of each entry
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;filesystem&gt;</h3>
+        <p>&lt;filesystem&gt; is useful when you need to perform file system operations in C++. It provides a
+            number of tools that can be used to work with files and directories in a portable way. It is
+            often used in conjunction with the &lt;fstream&gt; header, which provides a way to work with
+            file streams.</p>
+
+        <p>It's important to be aware of the different classes and functions that are defined in
+            &lt;filesystem&gt;, as well as the various error conditions that can occur during file system
+            operations. Some of the most commonly used components include
+            <code>std::filesystem::path</code>, <code>std::filesystem::file_status</code>,
+            <code>std::filesystem::directory_iterator</code>,
+            <code>std::filesystem::create_directory</code>, <code>std::filesystem::remove</code>,
+            <code>std::filesystem::rename</code>, and <code>std::filesystem::copy</code>.</p>
+    </main>
+</div>
+
+</html>

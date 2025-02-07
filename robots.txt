@@ -1,0 +1,8 @@
+User-agent: *Disallow: /CSS/  # Запрещаем сканирование папки CSS
+Disallow: /js/   # Запрещаем сканирование папки JavaScriptDisallow: /image/  # Запрещаем сканирование папки Image
+Disallow: /lib-pages/   # Запрещаем сканирование папки с html файламиDisallow: /.gitignore
+Disallow: /#.*$ # Запрещаем сканирование anchors on page
+Allow: /image/*.jpg  # Разрешаем сканирование файлов JPG в папке imagesAllow: /image/*.jpeg # Разрешаем сканирование файлов JPEG в папке images
+Allow: /image/*.png  # Разрешаем сканирование файлов PNG в папке imagesAllow: /image/*.svg  # Разрешаем сканирование файлов SVG в папке images
+Allow: /index.htmlAllow: /main.html
+Allow: /navigate.html

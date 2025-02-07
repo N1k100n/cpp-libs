@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Functional library</h1>
+        <hr>
+        <p>The &lt;functional&gt; header provides a number of function objects (functors) and related tools that
+            support functional programming in C++. Function objects are objects that can be called like functions,
+            and they are often used to pass behavior as arguments to algorithms or other functions.</p>
+
+        <h2>Key components in &lt;functional&gt;</h2>
+        <ul>
+            <li><b>Function objects:</b> Predefined function objects for common operations like arithmetic,
+                comparison, and logical operations (e.g., <code>std::plus</code>, <code>std::less</code>,
+                <code>std::logical_and</code>).</li>
+            <li><b>Function object adapters:</b> Tools for creating new function objects by combining or modifying
+                existing ones (e.g., <code>std::bind</code>, <code>std::not1</code>, <code>std::mem_fn</code>).</li>
+            <li><b><code>std::function</code>:</b> A class template that can wrap any callable object (function,
+                lambda expression, functor, etc.) with a specific signature.</li>
+        </ul>
+
+        <h3>How to use &lt;functional&gt;</h3>
+        <p>To use &lt;functional&gt;, you need to include the &lt;functional&gt; header file. You can then use the
+            function objects, adapters, and <code>std::function</code> class template in your code.</p>
+
+        <h3>Example: Using predefined function objects</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+    std::transform(v.begin(), v.end(), v.begin(), std::negate&lt;int&gt;()); // Negate all elements
+
+    for (int x : v) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: -1 -2 -3 -4 -5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using std::function</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;functional&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    std::function&lt;int(int, int)&gt; f = add; // Wrap the add function
+    int result = f(2, 3); // Call the function through the std::function object
+
+    std::cout &lt;&lt; "Result: " &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;functional&gt;</h3>
+        <p>&lt;functional&gt; is useful when you need to work with function objects, especially in the context of
+            generic programming and algorithms. It provides a way to abstract over different callable objects and
+            to manipulate them in a uniform way.</p>
+
+        <p>However, it's important to be aware of potential performance overhead when using function objects and
+            <code>std::function</code>, as they can sometimes be less efficient than direct function calls. If
+            performance is critical, consider using templates or other techniques to avoid the overhead.</p>
+    </main>
+</div>
+</body>
+</html>

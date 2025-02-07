@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>String library</h1>
+        <hr>
+        <p>The &lt;string&gt; header provides a way to work with strings in C++. It defines a class template
+            <code>std::basic_string</code> that can be specialized for different character types, such as <code>char</code>
+            (for narrow strings) and <code>wchar_t</code> (for wide strings). The &lt;string&gt; header also provides a
+            number of typedefs for commonly used string types, such as <code>std::string</code> (for narrow strings)
+            and <code>std::wstring</code> (for wide strings).</p>
+
+        <h2>Key features of std::string</h2>
+        <ul>
+            <li><b>Dynamic size:</b> <code>std::string</code> objects can grow or shrink as needed.</li>
+            <li><b>Character manipulation:</b> <code>std::string</code> provides a number of methods for manipulating
+                strings, such as inserting, deleting, replacing, and searching for characters.</li>
+            <li><b>String operations:</b> <code>std::string</code> supports various string operations, such as
+                concatenation, comparison, and substring extraction.</li>
+            <li><b>Automatic memory management:</b> <code>std::string</code> automatically manages the memory used to
+                store the string data, so you don't have to worry about allocating or deallocating memory.</li>
+        </ul>
+
+        <h3>How to use &lt;string&gt;</h3>
+        <p>To use &lt;string&gt;, you need to include the &lt;string&gt; header file. You can then create a
+            <code>std::string</code> object and use its methods to work with the string data.</p>
+
+        <h3>Example: Creating and manipulating strings</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string str1 = "Hello"; // Create a string object
+    std::string str2 = " world";
+    std::string str3 = str1 + str2; // Concatenate two strings
+
+    std::cout &lt;&lt; str3 &lt;&lt; std::endl; // Output: Hello world
+    std::cout &lt;&lt; str3.length() &lt;&lt; std::endl; // Output: 11
+    std::cout &lt;&lt; str3.substr(0, 5) &lt;&lt; std::endl; // Output: Hello
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Searching for substrings</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string str = "This is a test string";
+    size_t pos = str.find("test"); // Find the position of the substring "test"
+
+    if (pos != std::string::npos) {
+        std::cout &lt;&lt; "Substring found at position " &lt;&lt; pos &lt;&lt; std::endl; // Output: Substring found at position 10
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;string&gt;</h3>
+        <p>&lt;string&gt; is useful whenever you need to work with strings in C++. It is a powerful and flexible tool
+            that can be used for a wide variety of string manipulation tasks. In most cases, it is a better
+            choice than C-style strings, as it is safer and easier to use.</p>
+
+        <p>It's important to be aware of the different methods that are available for manipulating strings. Some
+            of the most commonly used methods include <code>length()</code>, <code>substr()</code>, <code>find()</code>,
+            <code>replace()</code>, and <code>insert()</code>.</p>
+    </main>
+</div>
+
+</html>

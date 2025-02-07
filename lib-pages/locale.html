@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Locale library</h1>
+        <hr>
+        <p>The &lt;locale&gt; header provides a way to work with locales in C++. A locale is a set of cultural
+            settings that affect the way that data is displayed and interpreted, such as the format of
+            numbers, dates, and currency. The &lt;locale&gt; header defines a <code>std::locale</code> class,
+            which represents a locale, as well as a number of facets, which are objects that encapsulate
+            specific aspects of a locale.</p>
+
+        <h2>Key concepts and components in &lt;locale&gt;</h2>
+        <ul>
+            <li><b>Locales:</b> Objects of the <code>std::locale</code> class that represent a set of cultural
+                settings.</li>
+            <li><b>Facets:</b> Objects that encapsulate specific aspects of a locale, such as
+                <code>std::numpunct</code> (for formatting numbers), <code>std::time_put</code> (for formatting
+                dates and times), and <code>std::collate</code> (for comparing strings).</li>
+            <li><b>Standard locales:</b> Predefined locales, such as the classic "C" locale and the user's
+                default locale.</li>
+            <li><b>Named locales:</b> Locales that are identified by a name, such as "en_US" for the United
+                States English locale.</li>
+        </ul>
+
+        <h3>How to use &lt;locale&gt;</h3>
+        <p>To use &lt;locale&gt;, you need to include the &lt;locale&gt; header file. You can then create a
+            <code>std::locale</code> object and use its methods to access the facets associated with the
+            locale.</p>
+
+        <h3>Example: Using std::locale to format numbers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;locale&gt;
+#include &lt;iomanip&gt;
+
+int main() {
+    std::locale mylocale(""); // Create the user's default locale
+    std::cout.imbue(mylocale); // Apply the locale to the standard output stream
+
+    double number = 12345.67;
+    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; number &lt;&lt; std::endl; // Output depends on the locale
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using std::locale to compare strings</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;locale&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::locale mylocale("ru_RU"); // Create the Russian locale
+    std::string str1 = "abc";
+    std::string str2 = "Абв"; // Cyrillic "Abv"
+
+    // Compare the strings using the Russian locale
+    if (str1 &lt; str2) {
+        std::cout &lt;&lt; str1 &lt;&lt; " is less than " &lt;&lt; str2 &lt;&lt; std::endl;
+    } else {
+        std::cout &lt;&lt; str1 &lt;&lt; " is not less than " &lt;&lt; str2 &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;locale&gt;</h3>
+        <p>&lt;locale&gt; is useful when you need to write code that is sensitive to cultural differences. It
+            provides a way to format data in a way that is appropriate for the user's locale, and it can
+            also be used to compare strings according to the rules of a specific language.</p>
+
+        <p>It's important to be aware of the different facets that are available and to use the appropriate
+            facets for your needs. For example, you should use <code>std::numpunct</code> when you need to format
+            numbers, and you should use <code>std::time_put</code> when you need to format dates and times.</p>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>C variable arguments library</h1>
+        <hr>
+        <p>The &lt;cstdarg&gt; library provides a way to handle functions with a variable number of arguments. It's a
+            C library that's also available in C++ for compatibility.</p>
+
+        <h2>Key macros in &lt;cstdarg&gt;</h2>
+        <ul>
+            <li><code>va_list</code>: A type that holds information about the arguments in a function with a variable
+                number of arguments.</li>
+            <li><code>va_start</code>: Initializes a <code>va_list</code> object.</li>
+            <li><code>va_arg</code>: Retrieves the next argument from a <code>va_list</code> object.</li>
+            <li><code>va_end</code>: Cleans up a <code>va_list</code> object.</li>
+        </ul>
+
+        <h3>How to use &lt;cstdarg&gt;</h3>
+        <p>To use &lt;cstdarg&gt;, you need to include the &lt;cstdarg&gt; header file. You can then use the
+            <code>va_list</code> type and the <code>va_start</code>, <code>va_arg</code>, and <code>va_end</code> macros to
+            handle the arguments in a function with a variable number of arguments.</p>
+
+        <h3>Example: A function that calculates the sum of a variable number of integers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdarg&gt;
+
+int sum(int count, ...) {
+    va_list args;
+    va_start(args, count); // Initialize the va_list
+
+    int sum = 0;
+    for (int i = 0; i &lt; count; ++i) {
+        sum += va_arg(args, int); // Get the next integer argument
+    }
+
+    va_end(args); // Clean up the va_list
+    return sum;
+}
+
+int main() {
+    int result = sum(3, 10, 20, 30);
+    std::cout &lt;&lt; "Sum: " &lt;&lt; result &lt;&lt; std::endl; // Output: Sum: 60
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Explanation of the example</h3>
+        <p>In this example, the <code>sum</code> function takes an integer <code>count</code> followed by a variable number
+            of integer arguments. The <code>va_start</code> macro initializes the <code>va_list</code> object
+            <code>args</code> to point to the first variable argument. The <code>va_arg</code> macro is then used to
+            retrieve each integer argument, and the <code>va_end</code> macro cleans up the <code>va_list</code> object.
+        </p>
+
+        <h3>When to use &lt;cstdarg&gt;</h3>
+        <p>&lt;cstdarg&gt; is useful when you need to write functions that can accept a variable number of arguments.
+            However, it's important to use &lt;cstdarg&gt; carefully, as it can be error-prone and can lead to undefined
+            behavior if used incorrectly. In modern C++, it's often better to use variadic templates instead of
+            &lt;cstdarg&gt; when possible, as they provide better type safety and can be more efficient.</p>
+
+        <p>It's also important to note that when using &lt;cstdarg&gt;, you need to know the types of the variable
+            arguments in advance, as there is no way to determine their types at runtime. This can make it difficult
+            to write generic functions that can handle a variable number of arguments of different types.</p>
+    </main>
+</div>
+</body>
+</html>

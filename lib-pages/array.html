@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Array library (C++11)</h1>
+        <hr>
+        <p>The &lt;array&gt; header provides a way to create fixed-size arrays in C++. The <code>std::array</code>
+            class template is a container that encapsulates a fixed-size array of elements of a specific type.
+            It provides similar functionality to C-style arrays, but with the added benefits of being a class
+            type, such as providing member functions and supporting iterators.</p>
+
+        <h2>Key features of std::array</h2>
+        <ul>
+            <li><b>Fixed size:</b> The size of a <code>std::array</code> is fixed at compile time and cannot be
+                changed.</li>
+            <li><b>Contiguous storage:</b> The elements of a <code>std::array</code> are stored in contiguous memory
+                locations, just like C-style arrays. This makes it efficient to access elements using pointers.
+            </li>
+            <li><b>Class type:</b> <code>std::array</code> is a class type, which means it can be used with other
+                standard library components, such as algorithms and containers.</li>
+            <li><b>Bounds checking:</b> <code>std::array</code> provides bounds checking through the <code>at()</code>
+                method, which throws an exception if you try to access an element outside the valid range.</li>
+        </ul>
+
+        <h3>How to use &lt;array&gt;</h3>
+        <p>To use &lt;array&gt;, you need to include the &lt;array&gt; header file. You can then create a
+            <code>std::array</code> object by specifying the type of the elements and the size of the array.</p>
+
+        <h3>Example: Creating and accessing an array</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;array&gt;
+
+int main() {
+    std::array&lt;int, 5&gt; arr = {1, 2, 3, 4, 5}; // Create an array of 5 integers
+
+    std::cout &lt;&lt; arr[0] &lt;&lt; std::endl; // Access the first element (no bounds checking)
+    std::cout &lt;&lt; arr.at(2) &lt;&lt; std::endl; // Access the third element (with bounds checking)
+
+    try {
+        std::cout &lt;&lt; arr.at(10) &lt;&lt; std::endl; // Access an element out of range
+    } catch (const std::out_of_range&amp; e) {
+        std::cerr &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using iterators</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;array&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    std::array&lt;int, 5&gt; arr = {5, 2, 4, 1, 3};
+
+    std::sort(arr.begin(), arr.end()); // Sort the array using std::sort
+
+    for (int x : arr) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 1 2 3 4 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;array&gt;</h3>
+        <p>&lt;array&gt; is useful when you need a fixed-size array of elements and you want the benefits of a class
+            type, such as member functions and iterators. It is often used when you know the size of the array at
+            compile time and you don't need to resize it later.</p>
+
+        <p>If you need a dynamic-size array, you should use <code>std::vector</code> instead. If you need a fixed-size
+            array and you don't need the benefits of a class type, you can use a C-style array.</p>
+    </main>
+</div>
+
+</html>

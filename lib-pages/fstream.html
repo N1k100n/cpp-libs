@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>File stream library</h1>
+        <hr>
+        <p>The &lt;fstream&gt; header provides a way to work with files in C++. It defines a number of classes
+            for reading from and writing to files, as well as for performing other file-related operations.
+            The classes in &lt;fstream&gt; are based on the iostream classes, and they inherit many of their
+            features.</p>
+
+        <h2>Key classes in &lt;fstream&gt;</h2>
+        <ul>
+            <li><b>std::ifstream:</b> A class for reading from files.</li>
+            <li><b>std::ofstream:</b> A class for writing to files.</li>
+            <li><b>std::fstream:</b> A class for reading from and writing to files.</li>
+        </ul>
+
+        <h2>Key concepts and components in &lt;fstream&gt;</h2>
+        <ul>
+            <li><b>File modes:</b> Flags that control how a file is opened, such as <code>std::ios::in</code> (for
+                input), <code>std::ios::out</code> (for output), <code>std::ios::app</code> (for appending), and
+                <code>std::ios::binary</code> (for binary mode).</li>
+            <li><b>File streams:</b> Objects of the classes defined in &lt;fstream&gt; that are used to read
+                from and write to files.</li>
+            <li><b>File operations:</b> Functions for performing file-related operations, such as opening,
+                closing, reading, writing, and seeking.</li>
+        </ul>
+
+        <h3>How to use &lt;fstream&gt;</h3>
+        <p>To use &lt;fstream&gt;, you need to include the &lt;fstream&gt; header file. You can then create an
+            object of one of the classes defined in &lt;fstream&gt; and use its methods to work with a
+            file.</p>
+
+        <h3>Example: Reading from a file</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::ifstream ifs("myfile.txt"); // Create an input file stream object
+
+    if (ifs.is_open()) {
+        std::string line;
+        while (std::getline(ifs, line)) { // Read the file line by line
+            std::cout &lt;&lt; line &lt;&lt; std::endl; // Print each line to the console
+        }
+        ifs.close(); // Close the file
+    } else {
+        std::cerr &lt;&lt; "Error: Unable to open file." &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Writing to a file</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::ofstream ofs("myfile.txt"); // Create an output file stream object
+
+    if (ofs.is_open()) {
+        ofs &lt;&lt; "This is a line of text." &lt;&lt; std::endl; // Write a line of text to the file
+        ofs &lt;&lt; "This is another line of text." &lt;&lt; std::endl; // Write another line of text to the file
+        ofs.close(); // Close the file
+    } else {
+        std::cerr &lt;&lt; "Error: Unable to open file." &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;fstream&gt;</h3>
+        <p>&lt;fstream&gt; is useful when you need to read from or write to files in C++. It provides a number
+            of tools that can be used to perform a wide range of file-related operations. It is often used
+            in conjunction with the &lt;iostream&gt; header, which provides a number of classes and
+            functions for working with input and output streams.</p>
+
+        <p>It's important to be aware of the different file modes that are available and to use the
+            appropriate file mode for your needs. For example, you should use <code>std::ios::binary</code>
+            when you need to work with binary files, and you should use <code>std::ios::app</code> when you
+            need to append to a file.</p>
+    </main>
+</div>
+
+</html>

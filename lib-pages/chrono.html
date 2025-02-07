@@ -1,20 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>Date and time utilities</h1>
-    <hr>
-    <p>C++ includes support for two types of time manipulation:<br><br>
-      ● The chrono library, a flexible collection of types that track time
-      with varying degrees of precision (e.g. std::chrono::time_point).<br><br>
-      ● C-style date and time library (e.g. std::time).</p>
-  </main>
+    <main>
+        <h1>Date and time utilities</h1>
+        <hr>
+        <p>C++ includes support for two types of time manipulation:<br><br>
+            ● The chrono library, a flexible collection of types that track time
+            with varying degrees of precision (e.g. std::chrono::time_point).<br><br>
+            ● C-style date and time library (e.g. std::time).</p>
+
+        <h2>Chrono library (C++11)</h2>
+        <p>The chrono library was introduced in C++11 to provide a more type-safe and flexible way to work with time.
+            It offers various classes and functions to represent and manipulate time points, durations, and clocks.</p>
+
+        <h3>Key components</h3>
+        <ul>
+            <li><b>Clocks:</b> Represent different types of clocks, such as system time, steady time, and high-resolution time.</li>
+            <li><b>Time points:</b> Represent specific moments in time.</li>
+            <li><b>Durations:</b> Represent intervals of time.</li>
+        </ul>
+
+        <h3>Examples</h3>
+        <h4>Getting current time</h4>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+
+int main() {
+    auto now = std::chrono::system_clock::now();
+    auto time = std::chrono::system_clock::to_time_t(now);
+    std::cout &lt;&lt; std::ctime(&amp;time) &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+
+        <h4>Measuring execution time</h4>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+
+int main() {
+    auto start = std::chrono::high_resolution_clock::now();
+    // Some code to be measured
+    for (int i = 0; i &lt; 1000000; ++i) {
+        // Do something
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start);
+    std::cout &lt;&lt; "Execution time: " &lt;&lt; duration.count() &lt;&lt; "ms" &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+
+        <h3>Additional features</h3>
+        <ul>
+            <li><b>Time zone support (C++20):</b> The chrono library has been extended in C++20 to include comprehensive time zone support.</li>
+            <li><b>Calendar and date operations (C++20):</b> C++20 also added classes and functions for working with calendars and dates.</li>
+        </ul>
+
+        <p>The chrono library provides a powerful and versatile toolset for handling time-related tasks in C++.
+            Its type safety and flexibility make it a preferred choice over the traditional C-style time functions.</p>
+    </main>
 </div>
 </body>
 </html>

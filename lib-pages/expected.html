@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Expected library (C++23)</h1>
+        <hr>
+        <p>The &lt;expected&gt; library provides a way to represent a value that might be present or absent. It is
+            particularly useful for handling errors without exceptions.</p>
+
+        <h2>Key features of std::expected</h2>
+        <ul>
+            <li><b>Represents a value or an error:</b> <code>std::expected</code> can hold either a value of type T or
+                an error of type E.</li>
+            <li><b>Provides access to the value or the error:</b> You can access the stored value or error using the
+                <code>*</code>, <code>-></code>, <code>value()</code>, and <code>error()</code> methods.</li>
+            <li><b>Supports monadic operations:</b> You can use monadic operations like <code>and_then()</code>,
+                <code>or_else()</code>, and <code>transform()</code> to chain operations on <code>std::expected</code>
+                values.</li>
+        </ul>
+
+        <h3>How to use std::expected</h3>
+        <p>To use <code>std::expected</code>, you need to include the &lt;expected&gt; header file. You can then create a
+            <code>std::expected</code> object with a specified value or error and perform various operations on it.</p>
+
+        <h3>Example: Using std::expected to handle errors without exceptions</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;expected&gt;
+
+std::expected&lt;int, std::string&gt; divide(int a, int b) {
+    if (b == 0) {
+        return std::unexpected("Division by zero");
+    } else {
+        return a / b;
+    }
+}
+
+int main() {
+    auto result = divide(10, 2);
+    if (result) {
+        std::cout &lt;&lt; "Result: " &lt;&lt; *result &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; "Error: " &lt;&lt; result.error() &lt;&lt; std::endl;
+    }
+
+    result = divide(10, 0);
+    if (result) {
+        std::cout &lt;&lt; "Result: " &lt;&lt; *result &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; "Error: " &lt;&lt; result.error() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Explanation of the example</h3>
+        <p>In this example, the <code>divide</code> function returns a <code>std::expected&lt;int, std::string&gt;</code>
+            object. If the division is successful, the object contains the result of the division. If the division
+            by zero error occurs, the object contains an error message. The <code>main</code> function then checks if
+            the object contains a value or an error and prints the appropriate message.</p>
+
+        <h3>When to use std::expected</h3>
+        <p><code>std::expected</code> is useful when you need to handle errors without exceptions. It can make your
+            code more readable and efficient by avoiding the overhead of exception handling. However, it's important
+            to use <code>std::expected</code> consistently throughout your code to avoid mixing error handling
+            strategies.</p>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Variant library (C++17)</h1>
+        <hr>
+        <p>The &lt;variant&gt; header provides a way to create and manipulate variant types, which are types that can
+            hold a value of one of several specified types. Variants are similar to unions, but they are type-safe
+            and provide a way to check which type of value is currently held.</p>
+
+        <h2>Key features of std::variant</h2>
+        <ul>
+            <li><b>Type-safe:</b> <code>std::variant</code> ensures type safety by checking the type of the stored value
+                at runtime. You cannot access the stored value with the wrong type.</li>
+            <li><b>Holds one value at a time:</b> A <code>std::variant</code> object can only hold one value at a time.
+            </li>
+            <li><b>Supports visitation:</b> You can use the <code>std::visit</code> function to apply a visitor to the
+                stored value.</li>
+            <li><b>Supports index-based access:</b> You can use the <code>std::get</code> function to access the stored
+                value by its index.</li>
+        </ul>
+
+        <h3>How to use std::variant</h3>
+        <p>To use <code>std::variant</code>, you need to include the &lt;variant&gt; header file. You can then create a
+            <code>std::variant</code> object by specifying the types of the possible values.</p>
+
+        <h3>Example: Creating and accessing a variant</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;variant&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::variant&lt;int, std::string, double&gt; v = 10; // Create a variant that can hold an int, string, or double
+
+    std::cout &lt;&lt; std::get&lt;int&gt;(v) &lt;&lt; std::endl; // Access the int value
+
+    v = "Hello"; // Assign a string value
+    std::cout &lt;&lt; std::get&lt;std::string&gt;(v) &lt;&lt; std::endl; // Access the string value
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using std::visit to process a variant</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;variant&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::variant&lt;int, std::string, double&gt; v = "Hello";
+
+    std::visit([](auto&& arg) {
+        std::cout &lt;&lt; arg &lt;&lt; std::endl;
+    }, v); // Visit the variant with a lambda function
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use std::variant</h3>
+        <p><code>std::variant</code> is useful when you need to work with objects that can hold a value of one of
+            several specified types. It is often used to represent data that can have different formats or to
+            implement state machines.</p>
+
+        <p>Variants are a type-safe alternative to unions. They provide a way to check which type of value is
+            currently held, which can prevent errors and make your code more robust.</p>
+    </main>
+</div>
+</body>
+</html>

@@ -1,26 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>Concepts library</h1>
-    <hr>
-    <p>The concepts library provides definitions of fundamental library concepts that can be used to
-      perform compile-time validation of template arguments and perform function dispatch based on
-      properties of types. These concepts provide a foundation for equational reasoning in programs.
-      Most concepts in the standard library impose both syntactic and semantic requirements. It is
-      said that a standard concept is satisfied if its syntactic requirements are met, and is modeled
-      if it is satisfied and its semantic requirements (if any) are also met.
-      In general, only the syntactic requirements can be checked by the compiler. If the validity or
-      meaning of a program depends whether a sequence of template arguments models a concept, and the
-      concept is satisfied but not modeled, or if a semantic requirement is not met at the point of use,
-      the program is ill-formed, no diagnostic required.</p>
-  </main>
+    <main>
+        <h1>Concepts library (C++20)</h1>
+        <hr>
+        <p>The &lt;concepts&gt; library was introduced in C++20 to provide a way to define constraints on template parameters.
+            Concepts are predicates that are evaluated at compile time to determine if a given type satisfies the requirements
+            of a template.</p>
+
+        <h2>Key benefits of using concepts</h2>
+        <ul>
+            <li><b>Improved error messages:</b> When a template instantiation fails due to unmet constraints, the compiler
+                can provide more specific and informative error messages, pointing directly to the violated concept.</li>
+            <li><b>Simplified template code:</b> Concepts make template code easier to read and understand by clearly
+                specifying the requirements for template parameters.</li>
+            <li><b>Enabling generic programming:</b> Concepts facilitate generic programming by allowing developers to
+                write code that works with any type that satisfies a given set of requirements.</li>
+        </ul>
+
+        <h3>Defining concepts</h3>
+        <p>Concepts are defined using the <code>concept</code> keyword followed by the concept name and a list of
+            requirements.</p>
+        <pre><code class="cpp">template &lt;typename T&gt;
+concept Integral = std::is_integral_v&lt;T&gt;;
+
+template &lt;typename T&gt;
+concept SignedIntegral = Integral&lt;T&gt; &amp;&amp; std::is_signed_v&lt;T&gt;;
+</code></pre>
+
+        <h3>Using concepts in templates</h3>
+        <p>Concepts can be used to constrain template parameters by placing them after the parameter name in the template
+            declaration.</p>
+        <pre><code class="cpp">template &lt;Integral T&gt;
+T add(T a, T b) {
+    return a + b;
+}
+</code></pre>
+
+        <h3>Standard library concepts</h3>
+        <p>The C++ standard library provides a number of predefined concepts that can be used to constrain template
+            parameters. Some examples include:</p>
+        <ul>
+            <li><code>std::integral</code></li>
+            <li><code>std::floating_point</code></li>
+            <li><code>std::copyable</code></li>
+            <li><code>std::movable</code></li>
+        </ul>
+
+        <h3>Example: Using concepts with std::vector</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;concepts&gt;
+
+template &lt;std::integral T&gt;
+void print_vector(const std::vector&lt;T&gt;&amp; v) {
+    for (const auto&amp; x : v) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl;
+}
+
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+    print_vector(v); // Output: 1 2 3 4 5
+
+    // std::vector&lt;double&gt; v2 = {1.1, 2.2, 3.3};
+    // print_vector(v2); // Error: Constraints not satisfied
+
+    return 0;
+}
+</code></pre>
+
+        <p>Concepts provide a powerful mechanism for improving the type safety and expressiveness of template code in
+            C++. They enable developers to write more generic and reusable code while ensuring that template parameters
+            meet the required constraints.</p>
+    </main>
 </div>
 </body>
 </html>

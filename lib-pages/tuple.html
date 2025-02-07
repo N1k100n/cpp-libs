@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Tuple library</h1>
+        <hr>
+        <p>The &lt;tuple&gt; header provides a way to create and manipulate tuples, which are fixed-size collections
+            of elements of possibly different types. Tuples are similar to structs, but they don't require you to
+            name the members.</p>
+
+        <h2>Key features of std::tuple</h2>
+        <ul>
+            <li><b>Heterogeneous elements:</b> <code>std::tuple</code> can hold elements of different types.</li>
+            <li><b>Fixed size:</b> The number of elements in a <code>std::tuple</code> is fixed at compile time.</li>
+            <li><b>Element access:</b> You can access the elements of a <code>std::tuple</code> using <code>std::get</code>
+                or <code>std::tie</code>.</li>
+            <li><b>Comparison:</b> You can compare two <code>std::tuple</code> objects using the comparison operators.
+            </li>
+        </ul>
+
+        <h3>How to use std::tuple</h3>
+        <p>To use <code>std::tuple</code>, you need to include the &lt;tuple&gt; header file. You can then create a
+            <code>std::tuple</code> object by specifying the types of the elements and the values of the elements.</p>
+
+        <h3>Example: Creating and accessing a tuple</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;tuple&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::tuple&lt;int, std::string, double&gt; t(10, "Hello", 3.14); // Create a tuple
+
+    std::cout &lt;&lt; std::get&lt;0&gt;(t) &lt;&lt; std::endl; // Access the first element (int)
+    std::cout &lt;&lt; std::get&lt;1&gt;(t) &lt;&lt; std::endl; // Access the second element (std::string)
+    std::cout &lt;&lt; std::get&lt;2&gt;(t) &lt;&lt; std::endl; // Access the third element (double)
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using std::tie to unpack a tuple</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;tuple&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::tuple&lt;int, std::string, double&gt; t(10, "Hello", 3.14);
+
+    int i;
+    std::string s;
+    double d;
+    std::tie(i, s, d) = t; // Unpack the tuple into separate variables
+
+    std::cout &lt;&lt; i &lt;&lt; std::endl;
+    std::cout &lt;&lt; s &lt;&lt; std::endl;
+    std::cout &lt;&lt; d &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use std::tuple</h3>
+        <p><code>std::tuple</code> is useful when you need to group together a fixed number of elements of possibly
+            different types. It is often used to return multiple values from a function or to store related data
+            that doesn't deserve its own struct.</p>
+
+        <p>Tuples are a convenient way to create collections of data without having to define a new type for each
+            collection. This can make your code more concise and readable.</p>
+    </main>
+</div>
+</body>
+</html>

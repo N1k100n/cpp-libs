@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Input/output stream library</h1>
+        <hr>
+        <p>The &lt;iostream&gt; header provides a way to perform input and output operations in C++. It
+            defines a number of classes and objects that can be used to read from and write to various
+            streams, such as the standard input stream (<code>std::cin</code>), the standard output stream
+            (<code>std::cout</code>), and the standard error stream (<code>std::cerr</code>). The iostream
+            library is based on the concept of streams, which are sequences of characters that can be
+            read from or written to.</p>
+
+        <h2>Key components in &lt;iostream&gt;</h2>
+        <ul>
+            <li><b>Streams:</b> Sequences of characters that can be read from or written to, such as the
+                standard input stream, the standard output stream, and files.</li>
+            <li><b>Classes:</b> Classes that represent streams and provide methods for performing input and
+                output operations, such as <code>std::istream</code> (for input streams),
+                <code>std::ostream</code> (for output streams), and <code>std::iostream</code> (for input/output
+                streams).</li>
+            <li><b>Objects:</b> Objects of the classes defined in &lt;iostream&gt; that are used to read from and
+                write to specific streams, such as <code>std::cin</code>, <code>std::cout</code>, and
+                <code>std::cerr</code>.</li>
+            <li><b>Manipulators:</b> Functions that can be used to format input and output, such as
+                <code>std::endl</code> (for inserting a newline character and flushing the output stream),
+                <code>std::setw</code> (for setting the width of an output field), and <code>std::setprecision</code>
+                (for setting the precision of floating-point numbers).</li>
+        </ul>
+
+        <h3>How to use &lt;iostream&gt;</h3>
+        <p>To use &lt;iostream&gt;, you need to include the &lt;iostream&gt; header file. You can then use the
+            classes and objects defined in &lt;iostream&gt; to perform input and output operations.</p>
+
+        <h3>Example: Reading from the standard input stream</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string name;
+    std::cout &lt;&lt; "Enter your name: ";
+    std::cin &gt;&gt; name;
+    std::cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Writing to the standard output stream</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+
+int main() {
+    int age = 30;
+    std::cout &lt;&lt; "I am " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;iostream&gt;</h3>
+        <p>&lt;iostream&gt; is useful whenever you need to perform input or output operations in C++. It
+            provides a number of tools that can be used to read from and write to various streams, such as
+            the standard input stream, the standard output stream, and files. It is often used in
+            conjunction with the &lt;fstream&gt; header, which provides a way to work with files.</p>
+
+        <p>It's important to be aware of the different classes and objects that are defined in &lt;iostream&gt;,
+            as well as the various manipulators that can be used to format input and output. Some of the most
+            commonly used components include <code>std::cin</code>, <code>std::cout</code>, <code>std::cerr</code>,
+            <code>std::endl</code>, <code>std::setw</code>, and <code>std::setprecision</code>.</p>
+    </main>
+</div>
+
+</html>

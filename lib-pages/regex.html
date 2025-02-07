@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Regular expression library (C++11)</h1>
+        <hr>
+        <p>The &lt;regex&gt; header provides a way to work with regular expressions in C++. Regular expressions
+            are a powerful tool for pattern matching and manipulation of strings. The &lt;regex&gt; header
+            defines a number of classes and functions for creating, matching, and manipulating regular
+            expressions.</p>
+
+        <h2>Key components in &lt;regex&gt;</h2>
+        <ul>
+            <li><b>Regular expression objects:</b> Objects of the <code>std::regex</code> class that represent
+                regular expressions.</li>
+            <li><b>Match results:</b> Objects of the <code>std::match_results</code> class that store the results
+                of a regular expression match.</li>
+            <li><b>Regular expression algorithms:</b> Functions for performing regular expression operations,
+                such as <code>std::regex_match</code> (for matching a regular expression against a string),
+                <code>std::regex_search</code> (for searching for a regular expression in a string), and
+                <code>std::regex_replace</code> (for replacing parts of a string that match a regular
+                expression).</li>
+            <li><b>Iterators:</b> Objects of the <code>std::regex_iterator</code> and
+                <code>std::regex_token_iterator</code> classes that can be used to iterate over the matches
+                of a regular expression in a string.</li>
+        </ul>
+
+        <h3>How to use &lt;regex&gt;</h3>
+        <p>To use &lt;regex&gt;, you need to include the &lt;regex&gt; header file. You can then create a
+            <code>std::regex</code> object by specifying the regular expression pattern. You can then use the
+            regular expression object to perform regular expression operations on strings.</p>
+
+        <h3>Example: Matching a regular expression</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;regex&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string str = "The quick brown fox jumps over the lazy dog.";
+    std::regex rgx("quick\\s(\\w+)"); // Matches "quick" followed by a space and a word
+
+    std::smatch match;
+    if (std::regex_search(str, match, rgx)) {
+        std::cout &lt;&lt; "Match found: " &lt;&lt; match[0] &lt;&lt; std::endl; // Output: Match found: quick brown
+        std::cout &lt;&lt; "Capture group 1: " &lt;&lt; match[1] &lt;&lt; std::endl; // Output: Capture group 1: brown
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Replacing parts of a string</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;regex&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string str = "The quick brown fox jumps over the lazy dog.";
+    std::regex rgx("fox");
+
+    std::string new_str = std::regex_replace(str, rgx, "cat"); // Replace "fox" with "cat"
+
+    std::cout &lt;&lt; new_str &lt;&lt; std::endl; // Output: The quick brown cat jumps over the lazy dog.
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;regex&gt;</h3>
+        <p>&lt;regex&gt; is useful when you need to perform complex pattern matching or manipulation of strings.
+            It is often used in tasks such as validating input, searching for patterns in text, and replacing
+            parts of strings. Regular expressions can be very powerful, but they can also be complex and
+            difficult to understand. It's important to use them carefully and to test them thoroughly.</p>
+
+        <p>It's important to be aware of the different regular expression flags that are available, as well
+            as the various escape sequences that can be used to match special characters. Some of the most
+            commonly used components include <code>std::regex</code>, <code>std::smatch</code>,
+            <code>std::regex_match</code>, <code>std::regex_search</code>, and
+            <code>std::regex_replace</code>.</p>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Memory library</h1>
+        <hr>
+        <p>The &lt;memory&gt; header provides a number of tools for managing memory in C++, including smart pointers,
+            allocators, and functions for working with uninitialized memory.</p>
+
+        <h2>Key components in &lt;memory&gt;</h2>
+        <ul>
+            <li><b>Smart pointers:</b> Classes that manage the lifetime of dynamically allocated objects,
+                automatically deleting them when they are no longer needed (e.g., <code>std::unique_ptr</code>,
+                <code>std::shared_ptr</code>, <code>std::weak_ptr</code>).</li>
+            <li><b>Allocators:</b> Classes that encapsulate memory allocation and deallocation strategies (e.g.,
+                <code>std::allocator</code>).</li>
+            <li><b>Uninitialized memory algorithms:</b> Functions for working with uninitialized memory, such as
+                copying, moving, and constructing objects (e.g., <code>std::uninitialized_copy</code>,
+                <code>std::uninitialized_move</code>, <code>std::uninitialized_fill</code>).</li>
+        </ul>
+
+        <h3>How to use &lt;memory&gt;</h3>
+        <p>To use &lt;memory&gt;, you need to include the &lt;memory&gt; header file. You can then use the smart pointers,
+            allocators, and uninitialized memory algorithms provided by the library.</p>
+
+        <h3>Example: Using std::unique_ptr</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() {
+    std::unique_ptr&lt;int&gt; ptr(new int(10)); // Create a unique pointer to an integer
+    std::cout &lt;&lt; *ptr &lt;&lt; std::endl; // Output: 10
+
+    return 0; // The integer will be automatically deleted when the unique_ptr goes out of scope
+}
+</code></pre>
+
+        <h3>Example: Using std::shared_ptr</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;memory&gt;
+
+int main() {
+    std::shared_ptr&lt;int&gt; ptr1(new int(20)); // Create a shared pointer to an integer
+    std::shared_ptr&lt;int&gt; ptr2 = ptr1; // Create another shared pointer that shares ownership
+
+    std::cout &lt;&lt; *ptr1 &lt;&lt; std::endl; // Output: 20
+    std::cout &lt;&lt; *ptr2 &lt;&lt; std::endl; // Output: 20
+
+    return 0; // The integer will be automatically deleted when the last shared_ptr goes out of scope
+}
+</code></pre>
+
+        <h3>When to use &lt;memory&gt;</h3>
+        <p>&lt;memory&gt; is useful when you need to manage dynamically allocated memory in C++. Smart pointers can help
+            you avoid memory leaks and dangling pointers, while allocators can provide a way to customize memory
+            allocation strategies. Uninitialized memory algorithms can be useful for working with raw memory,
+            but they should be used carefully to avoid errors.</p>
+
+        <p>It's important to understand the different types of smart pointers and to choose the appropriate one for
+            your needs. <code>std::unique_ptr</code> is used for exclusive ownership, <code>std::shared_ptr</code> is used
+            for shared ownership, and <code>std::weak_ptr</code> is used for non-owning observers.</p>
+    </main>
+</div>
+</body>
+</html>

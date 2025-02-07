@@ -1,22 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>Coroutines</h1>
-    <hr>
-    <p>A coroutine is a function that can suspend execution to be resumed later.
-      Coroutines are stackless: they suspend execution by returning to the caller,
-      and the data that is required to resume execution is stored separately from
-      the stack. This allows for sequential code that executes asynchronously (e.g.
-      to handle non-blocking I/O without explicit callbacks), and also supports
-      algorithms on lazy-computed infinite sequences and other uses.</p>
-  </main>
+    <main>
+        <h1>Coroutines library (C++20)</h1>
+        <hr>
+        <p>The &lt;coroutine&gt; library was introduced in C++20 to provide support for coroutines, which are functions
+            that can be suspended and resumed later. Coroutines enable asynchronous programming in a more
+            straightforward and readable way.</p>
+
+        <h2>Key benefits of using coroutines</h2>
+        <ul>
+            <li><b>Simplified asynchronous code:</b> Coroutines make asynchronous code easier to write and understand by
+                allowing developers to use a more sequential style of programming.</li>
+            <li><b>Improved performance:</b> Coroutines can improve the performance of asynchronous programs by avoiding
+                the overhead of traditional threading.</li>
+            <li><b>Better code readability:</b> Coroutines make asynchronous code more readable by eliminating the need for
+                complex callback structures.</li>
+        </ul>
+
+        <h3>Coroutine concepts</h3>
+        <ul>
+            <li><b>Coroutine frame:</b> A coroutine frame is a stack-allocated object that stores the state of a
+                coroutine when it is suspended.</li>
+            <li><b>Promise object:</b> A promise object is used to communicate the result of a coroutine to its caller.
+            </li>
+            <li><b>Coroutine handle:</b> A coroutine handle is a pointer to a coroutine frame that can be used to resume
+                the coroutine.</li>
+        </ul>
+
+        <h3>Coroutine keywords</h3>
+        <ul>
+            <li><code>co_await</code>: Suspends the execution of a coroutine until the awaited operation is complete.</li>
+            <li><code>co_yield</code>: Returns a value from a generator coroutine without terminating it.</li>
+            <li><code>co_return</code>: Returns a value from a coroutine and terminates it.</li>
+        </ul>
+
+        <h3>Example: Using coroutines with std::async</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;future&gt;
+#include &lt;coroutine&gt;
+
+auto my_coroutine() -> std::future&lt;int&gt; {
+    co_await std::async(std::launch::async, [](){ return 42; });
+    co_return 100;
+}
+
+int main() {
+    auto future = my_coroutine();
+    int result = future.get();
+    std::cout &lt;&lt; "Result: " &lt;&lt; result &lt;&lt; std::endl; // Output: Result: 100
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Generator coroutine</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;coroutine&gt;
+
+auto my_generator() -> std::generator&lt;int&gt; {
+    for (int i = 0; i &lt; 5; ++i) {
+        co_yield i;
+    }
+}
+
+int main() {
+    for (auto i : my_generator()) {
+        std::cout &lt;&lt; i &lt;&lt; " "; // Output: 0 1 2 3 4
+    }
+    std::cout &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+
+        <p>Coroutines provide a powerful mechanism for writing asynchronous code in a more manageable and efficient way.
+            They are a valuable addition to the C++ language and enable developers to write more responsive and scalable
+            applications.</p>
+    </main>
 </div>
 </body>
 </html>

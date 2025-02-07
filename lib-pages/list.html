@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>List library (C++11)</h1>
+        <hr>
+        <p>The &lt;list&gt; header provides a way to create doubly linked lists in C++. The
+            <code>std::list</code> class template is a container that encapsulates a doubly linked list of elements
+            of a specific type. It provides efficient insertion and deletion of elements at any position in the
+            list, but it does not provide random access to elements.</p>
+
+        <h2>Key features of std::list</h2>
+        <ul>
+            <li><b>Doubly linked:</b> The elements of a <code>std::list</code> are stored in a doubly linked list,
+                which means that each element has pointers to the previous and next elements in the list.
+            </li>
+            <li><b>Efficient insertion and deletion:</b> Insertion and deletion of elements at any position in a
+                <code>std::list</code> is efficient, as it only requires updating the pointers of the adjacent
+                elements.</li>
+            <li><b>No random access:</b> <code>std::list</code> does not provide random access to elements, as it
+                is not possible to directly access an element at a specific index. You have to iterate
+                through the list to reach the desired element.</li>
+            <li><b>Dynamic size:</b> The size of a <code>std::list</code> can be changed at runtime by inserting or
+                deleting elements.</li>
+        </ul>
+
+        <h3>How to use &lt;list&gt;</h3>
+        <p>To use &lt;list&gt;, you need to include the &lt;list&gt; header file. You can then create a
+            <code>std::list</code> object by specifying the type of the elements.</p>
+
+        <h3>Example: Creating and manipulating a list</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;list&gt;
+
+int main() {
+    std::list&lt;int&gt; lst = {1, 2, 3, 4, 5}; // Create a list of integers
+
+    lst.push_front(0); // Insert an element at the beginning
+    lst.push_back(6); // Insert an element at the end
+
+    for (int x : lst) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 0 1 2 3 4 5 6
+
+    lst.remove(3); // Remove all elements with the value 3
+
+    for (int x : lst) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 0 1 2 4 5 6
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using iterators</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;list&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    std::list&lt;int&gt; lst = {5, 2, 4, 1, 3};
+
+    lst.sort(); // Sort the list using std::sort (efficient for linked lists)
+
+    for (int x : lst) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 1 2 3 4 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;list&gt;</h3>
+        <p>&lt;list&gt; is useful when you need a container that supports efficient insertion and deletion of
+            elements at any position. It is often used when you need to maintain a list of elements in a specific
+            order and you need to be able to add or remove elements from the list frequently.</p>
+
+        <p>If you need a container that supports random access to elements, you should use <code>std::vector</code>
+            instead. If you need a container that provides fast insertion and deletion at the beginning and end
+            of the sequence, you should use <code>std::deque</code> instead.</p>
+    </main>
+</div>
+
+</html>

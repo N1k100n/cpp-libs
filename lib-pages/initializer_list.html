@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>Initializer list library</h1>
+        <hr>
+        <p>The &lt;initializer_list&gt; header provides a way to create initializer lists, which are used to initialize
+            containers and other objects with a list of values. Initializer lists are a convenient way to create
+            collections of data without having to explicitly specify the type of each element.</p>
+
+        <h2>Key features of std::initializer_list</h2>
+        <ul>
+            <li><b>Allows uniform initialization:</b> <code>std::initializer_list</code> can be used to initialize
+                objects of any type, including built-in types, user-defined types, and containers.</li>
+            <li><b>Supports variable number of elements:</b> You can create initializer lists with any number of
+                elements.</li>
+            <li><b>Provides access to elements:</b> You can access the elements of an initializer list using iterators
+                or range-based for loops.</li>
+        </ul>
+
+        <h3>How to use std::initializer_list</h3>
+        <p>To use <code>std::initializer_list</code>, you need to include the &lt;initializer_list&gt; header file. You can
+            then create an initializer list by enclosing a comma-separated list of values in curly braces.</p>
+
+        <h3>Example: Initializing a vector with an initializer list</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;initializer_list&gt;
+#include &lt;vector&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4, 5}; // Initialize a vector with an initializer list
+
+    for (int x : v) {
+        std::cout &lt;&lt; x &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 1 2 3 4 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Initializing a custom class with an initializer list</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;initializer_list&gt;
+
+class MyClass {
+public:
+    MyClass(std::initializer_list&lt;int&gt; list) {
+        for (int x : list) {
+            data.push_back(x);
+        }
+    }
+
+    void print() {
+        for (int x : data) {
+            std::cout &lt;&lt; x &lt;&lt; " ";
+        }
+        std::cout &lt;&lt; std::endl;
+    }
+
+private:
+    std::vector&lt;int&gt; data;
+};
+
+int main() {
+    MyClass obj = {10, 20, 30}; // Initialize a custom class with an initializer list
+    obj.print(); // Output: 10 20 30
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use std::initializer_list</h3>
+        <p><code>std::initializer_list</code> is useful when you need to create collections of data with a variable
+            number of elements. It is often used to initialize containers, but it can also be used to initialize
+            other types of objects.</p>
+
+        <p>Initializer lists are a convenient way to create collections of data without having to explicitly specify
+            the type of each element. This can make your code more concise and readable.</p>
+    </main>
+</div>
+</body>
+</html>

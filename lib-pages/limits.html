@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Numeric limits library</h1>
+        <hr>
+        <p>The &lt;limits&gt; header provides a way to access information about the limits of numeric types in C++.
+            It defines a class template <code>std::numeric_limits</code> that can be specialized for any built-in
+            arithmetic type. This class provides a number of constants and methods that can be used to determine
+            the range, precision, and other properties of a numeric type.</p>
+
+        <h2>Key features of std::numeric_limits</h2>
+        <ul>
+            <li><b>Type-specific information:</b> <code>std::numeric_limits</code> provides information about the
+                limits of a specific numeric type, such as the minimum and maximum values, the number of digits,
+                and whether the type is signed or unsigned.</li>
+            <li><b>Consistent interface:</b> The <code>std::numeric_limits</code> class template provides a consistent
+                interface for accessing information about different numeric types. This makes it easier to write
+                generic code that can work with any numeric type.</li>
+            <li><b>Platform-independent:</b> The information provided by <code>std::numeric_limits</code> is
+                platform-independent, so you can write code that will work correctly on any platform.</li>
+        </ul>
+
+        <h3>How to use &lt;limits&gt;</h3>
+        <p>To use &lt;limits&gt;, you need to include the &lt;limits&gt; header file. You can then use the
+            <code>std::numeric_limits</code> class template to access information about a specific numeric type.</p>
+
+        <h3>Example: Getting the maximum value of an int</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;limits&gt;
+
+int main() {
+    int max_int = std::numeric_limits&lt;int&gt;::max();
+    std::cout &lt;&lt; "Max int: " &lt;&lt; max_int &lt;&lt; std::endl; // Output: Max int: 2147483647
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Checking if a type is signed</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;limits&gt;
+
+int main() {
+    bool is_signed = std::numeric_limits&lt;int&gt;::is_signed;
+    if (is_signed) {
+        std::cout &lt;&lt; "int is signed" &lt;&lt; std::endl; // Output: int is signed
+    } else {
+        std::cout &lt;&lt; "int is unsigned" &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;limits&gt;</h3>
+        <p>&lt;limits&gt; is useful when you need to write code that is aware of the limitations of numeric types.
+            This can be important for ensuring that your code is portable and that it handles edge cases correctly.
+            For example, you might use &lt;limits&gt; to check if a value is within the representable range of a type
+            before performing an operation on it.</p>
+
+        <p>It's important to be aware of the different properties that are provided by
+            <code>std::numeric_limits</code>. Some of the most commonly used properties include <code>min()</code>,
+            <code>max()</code>, <code>lowest()</code>, <code>digits</code>, <code>is_signed</code>, and
+            <code>is_integer</code>.</p>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>C time library</h1>
+        <hr>
+        <p>The &lt;ctime&gt; header provides functions for working with date and time. It's a C library that's also
+            available in C++ for compatibility.</p>
+
+        <h2>Key functions and types in &lt;ctime&gt;</h2>
+        <ul>
+            <li><code>clock_t</code>: A type that represents processor time.</li>
+            <li><code>time_t</code>: A type that represents calendar time.</li>
+            <li><code>struct tm</code>: A structure that holds the components of a calendar time, such as year,
+                month, day, hour, minute, and second.</li>
+            <li><code>asctime</code>: Converts a <code>struct tm</code> to a string.</li>
+            <li><code>clock</code>: Returns the amount of processor time used by the program.</li>
+            <li><code>ctime</code>: Converts a <code>time_t</code> to a string.</li>
+            <li><code>difftime</code>: Calculates the difference between two <code>time_t</code> values.</li>
+            <li><code>gmtime</code>: Converts a <code>time_t</code> to a <code>struct tm</code> in UTC.</li>
+            <li><code>localtime</code>: Converts a <code>time_t</code> to a <code>struct tm</code> in the local time zone.
+            </li>
+            <li><code>mktime</code>: Converts a <code>struct tm</code> to a <code>time_t</code>.</li>
+            <li><code>strftime</code>: Formats a <code>struct tm</code> into a string.</li>
+            <li><code>timespec</code> (C++17): Represents a time point with nanosecond precision.</li>
+        </ul>
+
+        <h3>How to use &lt;ctime&gt;</h3>
+        <p>To use &lt;ctime&gt;, you need to include the &lt;ctime&gt; header file. You can then use the functions and
+            types provided by the library to work with date and time.</p>
+
+        <h3>Example: Getting the current time</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;ctime&gt;
+
+int main() {
+    time_t now = time(0); // Get the current time
+    char* dt = ctime(&amp;now); // Convert it to a string
+
+    std::cout &lt;&lt; "Current date and time: " &lt;&lt; dt &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Formatting time with strftime</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;ctime&gt;
+
+int main() {
+    time_t now = time(0);
+    struct tm* ltime = localtime(&amp;now);
+
+    char strftime_buf[256];
+    strftime(strftime_buf, sizeof(strftime_buf), "%Y-%m-%d %H:%M:%S", ltime);
+    std::cout &lt;&lt; strftime_buf &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;ctime&gt;</h3>
+        <p>&lt;ctime&gt; is useful when you need to work with date and time in C++. However, for more advanced
+            functionality, such as time zones and higher precision, it's often better to use the &lt;chrono&gt; library
+            introduced in C++11.</p>
+
+        <p>It's important to be aware of potential issues with &lt;ctime&gt;, such as platform-specific behavior and
+            limited precision. If you need high precision or cross-platform compatibility, consider using &lt;chrono&gt;
+            instead.</p>
+    </main>
+</div>
+</body>
+</html>

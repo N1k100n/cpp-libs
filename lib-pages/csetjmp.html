@@ -1,18 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>Standard library header &lt;csetjmp&gt;</h1>
-    <hr>
-    <p>This header was originally in the C standard library as &lt;setjmp.h&gt;.<br>
-      This header is part of the program support library.</p>
-  </main>
+    <main>
+        <h1>C setjmp library</h1>
+        <hr>
+        <p>The &lt;csetjmp&gt; library provides functions for saving and restoring the program's execution context.
+            It's a low-level library that's often used for implementing error handling, exception handling, and
+            coroutines.</p>
+
+        <h2>Key functions in &lt;csetjmp&gt;</h2>
+        <ul>
+            <li><code>setjmp</code>: Saves the current execution context into a <code>jmp_buf</code> object.</li>
+            <li><code>longjmp</code>: Restores a previously saved execution context from a <code>jmp_buf</code> object.
+            </li>
+        </ul>
+
+        <h3>How to use &lt;csetjmp&gt;</h3>
+        <p>To use &lt;csetjmp&gt;, you need to include the &lt;csetjmp&gt; header file. You can then use the
+            <code>setjmp</code> function to save the current execution context and the <code>longjmp</code> function to
+            restore it.</p>
+
+        <h3>Example: Using setjmp and longjmp for error handling</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;csetjmp&gt;
+
+jmp_buf env;
+
+void error_handler() {
+    std::cout &lt;&lt; "Error occurred!" &lt;&lt; std::endl;
+    longjmp(env, 1); // Return to the saved context
+}
+
+int main() {
+    if (setjmp(env) == 0) { // Save the context
+        // Code that might cause an error
+        int result = 10 / 0; // This will cause a division by zero error
+    } else {
+        // Error handling code
+        std::cout &lt;&lt; "Recovered from error." &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Explanation of the example</h3>
+        <p>In this example, the <code>setjmp</code> function saves the current execution context into the <code>env</code>
+            variable. If an error occurs (in this case, a division by zero), the <code>error_handler</code> function is
+            called. The <code>error_handler</code> function then uses the <code>longjmp</code> function to restore the
+            execution context to the point where <code>setjmp</code> was called. The program then continues execution
+            from that point.</p>
+
+        <h3>When to use &lt;csetjmp&gt;</h3>
+        <p>&lt;csetjmp&gt; is a low-level library that should be used sparingly. It can be useful for implementing
+            error handling, exception handling, and coroutines, but it can also make code difficult to understand and
+            maintain. In most cases, it's better to use higher-level abstractions, such as exceptions or structured
+            error handling mechanisms.</p>
+
+        <p>It's important to note that using <code>longjmp</code> can bypass stack unwinding, which can lead to resource
+            leaks and other problems. Therefore, it's crucial to use &lt;csetjmp&gt; carefully and to ensure that your
+            code is correct and robust.</p>
+    </main>
 </div>
 </body>
 </html>

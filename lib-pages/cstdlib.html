@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>C standard library</h1>
+        <hr>
+        <p>The &lt;cstdlib&gt; header provides a number of general utility functions, including functions for
+            dynamic memory management, random number generation, integer arithmetic, searching and sorting,
+            environment control, integral arithmetics, and converting strings to numeric values.</p>
+
+        <h2>Key functions and macros in &lt;cstdlib&gt;</h2>
+        <ul>
+            <li><b>Dynamic memory management:</b>
+                <ul>
+                    <li><code>malloc</code>: Allocates a block of memory.</li>
+                    <li><code>calloc</code>: Allocates a block of memory and initializes it to zero.</li>
+                    <li><code>realloc</code>: Reallocates a block of memory.</li>
+                    <li><code>free</code>: Deallocates a block of memory.</li>
+                </ul>
+            </li>
+            <li><b>Random number generation:</b>
+                <ul>
+                    <li><code>rand</code>: Generates a pseudo-random integer.</li>
+                    <li><code>srand</code>: Seeds the pseudo-random number generator.</li>
+                </ul>
+            </li>
+            <li><b>Integer arithmetic:</b>
+                <ul>
+                    <li><code>abs</code>: Returns the absolute value of an integer.</li>
+                    <li><code>div</code>: Performs integer division and returns the quotient and remainder.</li>
+                </ul>
+            </li>
+            <li><b>Searching and sorting:</b>
+                <ul>
+                    <li><code>bsearch</code>: Performs a binary search in a sorted array.</li>
+                    <li><code>qsort</code>: Sorts an array using the quicksort algorithm.</li>
+                </ul>
+            </li>
+            <li><b>Environment control:</b>
+                <ul>
+                    <li><code>getenv</code>: Gets the value of an environment variable.</li>
+                    <li><code>system</code>: Executes a system command.</li>
+                    <li><code>exit</code>: Terminates the program.</li>
+                </ul>
+            </li>
+            <li><b>String conversion:</b>
+                <ul>
+                    <li><code>atoi</code>: Converts a string to an integer.</li>
+                    <li><code>atol</code>: Converts a string to a long integer.</li>
+                    <li><code>atof</code>: Converts a string to a double.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>How to use &lt;cstdlib&gt;</h3>
+        <p>To use &lt;cstdlib&gt;, you need to include the &lt;cstdlib&gt; header file. You can then use the functions and
+            macros provided by the library in your code.</p>
+
+        <h3>Example: Using malloc and free for dynamic memory allocation</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+
+int main() {
+    int* arr = (int*)malloc(5 * sizeof(int)); // Allocate memory for 5 integers
+
+    if (arr == nullptr) {
+        std::cerr &lt;&lt; "Memory allocation failed!" &lt;&lt; std::endl;
+        return 1;
+    }
+
+    for (int i = 0; i &lt; 5; ++i) {
+        arr[i] = i * 2;
+    }
+
+    for (int i = 0; i &lt; 5; ++i) {
+        std::cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 0 2 4 6 8
+
+    free(arr); // Deallocate the memory
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using rand and srand for random number generation</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+int main() {
+    srand(time(0)); // Seed the random number generator with the current time
+
+    for (int i = 0; i &lt; 5; ++i) {
+        std::cout &lt;&lt; rand() % 100 &lt;&lt; " "; // Generate a random number between 0 and 99
+    }
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;cstdlib&gt;</h3>
+        <p>&lt;cstdlib&gt; is a fundamental library that is used in many C++ programs. The functions provided by this
+            library are essential for performing various tasks, such as dynamic memory management, random number
+            generation, and more. You should include &lt;cstdlib&gt; in any program that uses these functionalities.</p>
+    </main>
+</div>
+</body>
+</html>

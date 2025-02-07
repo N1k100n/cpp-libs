@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>Standard library header &lt;compare&gt;</h1>
-    <hr>
-    <p>This header is part of the language support library.</p>
-  </main>
+    <main>
+        <h1>Comparison library (C++20)</h1>
+        <hr>
+        <p>The &lt;compare&gt; library was introduced in C++20 to provide a standardized way to perform comparisons between
+            objects. It introduces the concept of three-way comparison and provides tools for generating comparison
+            operators automatically.</p>
+
+        <h2>Key benefits of using &lt;compare&gt;</h2>
+        <ul>
+            <li><b>Simplified code:</b> The library provides a way to automatically generate comparison operators,
+                reducing the amount of boilerplate code you need to write.</li>
+            <li><b>Improved consistency:</b> By using the library's tools, you can ensure that your comparison operators
+                are consistent and correct.</li>
+            <li><b>Support for three-way comparison:</b> The library introduces the concept of three-way comparison,
+                which can provide more information about the relationship between two objects than traditional
+                two-way comparisons.</li>
+        </ul>
+
+        <h3>Three-way comparison</h3>
+        <p>The &lt;compare&gt; library introduces the <code>&lt;=&gt;</code> operator, also known as the spaceship operator,
+            which performs a three-way comparison between two objects. The result of this operator is a
+            <code>std::strong_ordering</code>, <code>std::weak_ordering</code>, or <code>std::partial_ordering</code> object,
+            which indicates the relationship between the two objects.</p>
+
+        <h3>Generating comparison operators</h3>
+        <p>The &lt;compare&gt; library provides tools for automatically generating comparison operators based on the
+            <code>&lt;=&gt;</code> operator. This can significantly reduce the amount of code you need to write to
+            support comparisons in your classes.</p>
+
+        <h3>Example: Using &lt;compare&gt; with a custom class</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;compare&gt;
+
+struct MyClass {
+    int value;
+
+    auto operator&lt;=&gt;(const MyClass&amp; other) const {
+        return value &lt;=&gt; other.value;
+    }
+};
+
+int main() {
+    MyClass a{1};
+    MyClass b{2};
+
+    if (a &lt; b) {
+        std::cout &lt;&lt; "a is less than b" &lt;&lt; std::endl;
+    }
+
+    if (a == b) {
+        std::cout &lt;&lt; "a is equal to b" &lt;&lt; std::endl;
+    }
+
+    if (a &gt; b) {
+        std::cout &lt;&lt; "a is greater than b" &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Ordering categories</h3>
+        <p>The &lt;compare&gt; library defines three ordering categories:</p>
+        <ul>
+            <li><code>std::strong_ordering</code>: Represents a total order, where all elements are comparable.</li>
+            <li><code>std::weak_ordering</code>: Represents a partial order, where some elements may not be comparable.
+            </li>
+            <li><code>std::partial_ordering</code>: Represents a partial order, where some elements may not be comparable.
+            </li>
+        </ul>
+
+        <p>The choice of ordering category depends on the specific requirements of your class and the nature of the
+            data it represents.</p>
+    </main>
 </div>
 </body>
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>New library</h1>
+        <hr>
+        <p>The &lt;new&gt; header provides a way to control how memory is allocated and deallocated in C++. It
+            defines several operators and functions that are used to allocate and deallocate memory, as well as
+            functions for handling allocation failures.</p>
+
+        <h2>Key components in &lt;new&gt;</h2>
+        <ul>
+            <li><b>Allocation operators:</b>
+                <ul>
+                    <li><code>new</code>: Allocates a block of memory.</li>
+                    <li><code>new[]</code>: Allocates an array of objects.</li>
+                </ul>
+            </li>
+            <li><b>Deallocation operators:</b>
+                <ul>
+                    <li><code>delete</code>: Deallocates a block of memory.</li>
+                    <li><code>delete[]</code>: Deallocates an array of objects.</li>
+                </ul>
+            </li>
+            <li><b>Exception handling:</b>
+                <ul>
+                    <li><code>std::bad_alloc</code>: An exception that is thrown when memory allocation fails.</li>
+                    <li><code>std::nothrow</code>: A constant that can be used to prevent <code>new</code> from throwing
+                        an exception.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>How to use &lt;new&gt;</h3>
+        <p>To use &lt;new&gt;, you need to include the &lt;new&gt; header file. You can then use the operators and
+            functions provided by the library to allocate and deallocate memory.</p>
+
+        <h3>Example: Using new and delete</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;new&gt;
+
+int main() {
+    int* ptr = new int(10); // Allocate an integer
+    std::cout &lt;&lt; *ptr &lt;&lt; std::endl; // Output: 10
+    delete ptr; // Deallocate the integer
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Handling allocation failures</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;new&gt;
+
+int main() {
+    try {
+        int* ptr = new int(1000000000); // Try to allocate a large block of memory
+    } catch (const std::bad_alloc&amp; e) {
+        std::cerr &lt;&lt; "Memory allocation failed: " &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;new&gt;</h3>
+        <p>&lt;new&gt; is useful when you need to control how memory is allocated and deallocated in C++. The operators
+            and functions provided by this library are essential for working with dynamic memory. However, it's
+            important to use &lt;new&gt; carefully to avoid memory leaks and other problems.</p>
+
+        <p>It's important to always deallocate memory that you have allocated with <code>new</code>. Failure to do so
+            will result in a memory leak. It's also important to handle allocation failures gracefully. If you don't
+            handle allocation failures, your program may crash.</p>
+    </main>
+</div>
+</body>
+
+</html>

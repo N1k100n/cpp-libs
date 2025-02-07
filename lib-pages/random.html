@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Random number generation library (C++11)</h1>
+        <hr>
+        <p>The &lt;random&gt; header provides a way to generate random numbers in C++. It defines a number of
+            random number generators, which are objects that produce a sequence of pseudo-random numbers, as
+            well as a number of random number distributions, which are objects that transform the output of a
+            random number generator to follow a specific statistical distribution.</p>
+
+        <h2>Key components in &lt;random&gt;</h2>
+        <ul>
+            <li><b>Random number generators:</b> Classes that generate pseudo-random numbers, such as
+                <code>std::mt19937</code> (Mersenne Twister engine), <code>std::linear_congruential_engine</code>,
+                and <code>std::subtract_with_carry_engine</code>.</li>
+            <li><b>Random number distributions:</b> Classes that generate random numbers according to a
+                specific statistical distribution, such as <code>std::uniform_int_distribution</code> (for
+                integers), <code>std::uniform_real_distribution</code> (for floating-point numbers),
+                <code>std::normal_distribution</code> (for normal distribution), and
+                <code>std::poisson_distribution</code> (for Poisson distribution).</li>
+            <li><b>Other utilities:</b> Classes and functions for seeding generators, generating non-deterministic
+                random numbers, etc.</li>
+        </ul>
+
+        <h3>How to use &lt;random&gt;</h3>
+        <p>To use &lt;random&gt;, you need to include the &lt;random&gt; header file. You can then create a random
+            number generator object and a random number distribution object. You can then use the
+            distribution object to generate random numbers from the generator.</p>
+
+        <h3>Example: Generating random integers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;random&gt;
+
+int main() {
+    std::random_device rd; // Obtain a random seed from the OS
+    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution&lt;&gt; distrib(1, 10); // Define range for distribution
+
+    for (int i = 0; i &lt; 10; ++i) {
+        std::cout &lt;&lt; distrib(gen) &lt;&lt; " "; // Generate and print a random number between 1 and 10
+    }
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Generating random floating-point numbers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;random&gt;
+
+int main() {
+    std::random_device rd; // Obtain a random seed from the OS
+    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_real_distribution&lt;&gt; distrib(0.0, 1.0); // Define range for distribution
+
+    for (int i = 0; i &lt; 10; ++i) {
+        std::cout &lt;&lt; distrib(gen) &lt;&lt; " "; // Generate and print a random number between 0 and 1
+    }
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;random&gt;</h3>
+        <p>&lt;random&gt; is useful when you need to generate random numbers in C++, such as in simulations,
+            games, or cryptographic applications. It provides a number of tools that can be used to generate
+            random numbers that follow a specific statistical distribution.</p>
+
+        <p>It's important to choose the appropriate random number generator and distribution for your needs.
+            For most purposes, <code>std::mt19937</code> is a good choice for a random number generator, and
+            <code>std::uniform_int_distribution</code> and <code>std::uniform_real_distribution</code> are good
+            choices for uniform distributions of integers and floating-point numbers, respectively.</p>
+    </main>
+</div>
+
+</html>

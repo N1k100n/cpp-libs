@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div>
+    <main>
+        <h1>C standard definitions library</h1>
+        <hr>
+        <p>The &lt;cstddef&gt; library provides several standard definitions that are used throughout the C and C++
+            languages. It defines types and macros that are used to represent sizes, differences between pointers, and
+            null pointers.</p>
+
+        <h2>Key definitions in &lt;cstddef&gt;</h2>
+        <ul>
+            <li><code>size_t</code>: An unsigned integer type that is used to represent the size of objects in bytes.
+            </li>
+            <li><code>ptrdiff_t</code>: A signed integer type that is used to represent the difference between two
+                pointers.</li>
+            <li><code>nullptr</code>: A null pointer constant that can be used to represent a pointer that does not
+                point to anything.</li>
+            <li><code>offsetof</code>: A macro that returns the offset of a member within a struct or union.</li>
+            <li><code>byte</code> (C++17): Represents a byte. Unlike char, it is not a character type, and unlike
+                unsigned char, it is not an arithmetic type; it is also distinct from both signed char and char.</li>
+        </ul>
+
+        <h3>How to use &lt;cstddef&gt;</h3>
+        <p>To use &lt;cstddef&gt;, you need to include the &lt;cstddef&gt; header file. You can then use the definitions
+            provided by the library in your code.</p>
+
+        <h3>Example: Using size_t to iterate over an array</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstddef&gt;
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    size_t size = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array
+
+    for (size_t i = 0; i &lt; size; ++i) {
+        std::cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 1 2 3 4 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using ptrdiff_t to calculate the difference between two pointers</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstddef&gt;
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int* ptr1 = &amp;arr[0];
+    int* ptr2 = &amp;arr[3];
+
+    ptrdiff_t diff = ptr2 - ptr1; // Calculate the difference between the pointers
+
+    std::cout &lt;&lt; "Difference: " &lt;&lt; diff &lt;&lt; std::endl; // Output: Difference: 3
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using offsetof to find the offset of a member</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstddef&gt;
+
+struct MyStruct {
+    char a;
+    int b;
+    double c;
+};
+
+int main() {
+    size_t offset = offsetof(MyStruct, c);
+
+    std::cout &lt;&lt; "Offset of c: " &lt;&lt; offset &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;cstddef&gt;</h3>
+        <p>&lt;cstddef&gt; is a fundamental library that is used throughout the C and C++ languages. The definitions
+            provided by this library are essential for working with pointers, sizes, and offsets. You should include
+            &lt;cstddef&gt; in any program that uses these concepts.</p>
+    </main>
+</div>
+</body>
+</html>

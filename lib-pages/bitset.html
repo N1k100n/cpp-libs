@@ -1,22 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lib</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <div>
-  <main>
-    <h1>std::bitset</h1>
-    <hr>
-    <p>The class template bitset represents a fixed-size sequence of N bits.
-      Bitsets can be manipulated by standard logic operators and converted to
-      and from strings and integers. For the purpose of the string representation
-      and of naming directions for shift operations, the sequence is thought of as
-      having its lowest indexed elements at the right, as in the binary representation
-      of integers.</p>
-  </main>
+    <main>
+        <h1>Bitset library</h1>
+        <hr>
+        <p>The &lt;bitset&gt; library provides a way to represent and manipulate fixed-size sequences of bits. It's
+            particularly useful when you need to work with binary data or perform bitwise operations efficiently.</p>
+
+        <h2>Key features of std::bitset</h2>
+        <ul>
+            <li><b>Fixed size:</b> <code>std::bitset</code> has a fixed size that is determined at compile time. This
+                makes it more efficient than dynamic bitsets like <code>std::vector&lt;bool&gt;</code> for certain use
+                cases.</li>
+            <li><b>Bitwise operations:</b> <code>std::bitset</code> supports various bitwise operations, such as AND, OR,
+                XOR, NOT, and shifting.</li>
+            <li><b>Conversion to string:</b> You can easily convert a <code>std::bitset</code> to a string representation.
+            </li>
+            <li><b>Efficient storage:</b> <code>std::bitset</code> stores bits compactly, using only one bit of memory for
+                each bit value.</li>
+        </ul>
+
+        <h3>How to use std::bitset</h3>
+        <p>To use <code>std::bitset</code>, you need to include the &lt;bitset&gt; header file. You can then create a
+            <code>std::bitset</code> object with a specified size and perform various operations on it.</p>
+
+        <h3>Example: Creating and manipulating a bitset</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;bitset&gt;
+
+int main() {
+    std::bitset&lt;8&gt; bits("01101001"); // Create a bitset from a string
+    std::cout &lt;&lt; bits &lt;&lt; std::endl; // Output: 01101001
+
+    bits.set(0); // Set the first bit to 1
+    bits.reset(7); // Reset the last bit to 0
+    std::cout &lt;&lt; bits &lt;&lt; std::endl; // Output: 11101000
+
+    bits.flip(2); // Flip the third bit
+    std::cout &lt;&lt; bits &lt;&lt; std::endl; // Output: 11001000
+
+    std::cout &lt;&lt; bits.count() &lt;&lt; std::endl; // Output: 4 (number of set bits)
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Converting to and from string</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;bitset&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::bitset&lt;16&gt; bits(0xABCD); // Create a bitset from an integer
+    std::string str = bits.to_string(); // Convert to string
+    std::cout &lt;&lt; str &lt;&lt; std::endl; // Output: 1010101111001101
+
+    std::bitset&lt;8&gt; bits2(str.substr(0, 8)); // Create a bitset from a substring
+    std::cout &lt;&lt; bits2 &lt;&lt; std::endl; // Output: 10101011
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use std::bitset</h3>
+        <p><code>std::bitset</code> is useful when you need to work with fixed-size sequences of bits, especially when
+            performance is critical. It's often used in low-level programming, network protocols, and cryptography.</p>
+
+        <p>However, keep in mind that <code>std::bitset</code> has a fixed size, so it's not suitable for situations where
+            the number of bits may vary at runtime. In such cases, you might consider using
+            <code>std::vector&lt;bool&gt;</code> or a custom dynamic bitset implementation.</p>
+    </main>
 </div>
 </body>
 </html>

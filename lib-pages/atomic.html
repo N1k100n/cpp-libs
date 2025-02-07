@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Atomic library (C++11)</h1>
+        <hr>
+        <p>The &lt;atomic&gt; header provides a way to work with atomic variables in C++. Atomic variables are
+            variables that are accessed and modified in a way that is guaranteed to be atomic, meaning that
+            the operations appear to occur as a single, indivisible unit of work. This is important for
+            multithreaded programming, where multiple threads may access and modify the same variable.
+            Without atomic variables, it is possible for race conditions to occur, which can lead to
+            unpredictable and incorrect behavior.</p>
+
+        <h2>Key components in &lt;atomic&gt;</h2>
+        <ul>
+            <li><b>Atomic types:</b> Classes that represent atomic variables, such as
+                <code>std::atomic_int</code>, <code>std::atomic_bool</code>, <code>std::atomic_long</code>, and
+                <code>std::atomic_pointer</code>.</li>
+            <li><b>Atomic operations:</b> Functions for performing atomic operations on atomic variables,
+                such as <code>std::atomic_load</code> (for loading a value), <code>std::atomic_store</code> (for
+                storing a value), <code>std::atomic_exchange</code> (for exchanging a value),
+                <code>std::atomic_compare_exchange_strong</code> and
+                <code>std::atomic_compare_exchange_weak</code> (for performing a compare-and-exchange
+                operation), and <code>std::atomic_fetch_add</code>, <code>std::atomic_fetch_sub</code>,
+                <code>std::atomic_fetch_or</code>, <code>std::atomic_fetch_xor</code>, and
+                <code>std::atomic_fetch_and</code> (for performing atomic arithmetic and bitwise
+                operations).</li>
+            <li><b>Memory order:</b> Constants that specify the memory ordering constraints for atomic
+                operations, such as <code>std::memory_order_relaxed</code>,
+                <code>std::memory_order_consume</code>, <code>std::memory_order_acquire</code>,
+                <code>std::memory_order_release</code>, <code>std::memory_order_acq_rel</code>, and
+                <code>std::memory_order_seq_cst</code>.</li>
+        </ul>
+
+        <h3>How to use &lt;atomic&gt;</h3>
+        <p>To use &lt;atomic&gt;, you need to include the &lt;atomic&gt; header file. You can then create an
+            object of one of the atomic types and use the atomic operations functions to work with the
+            atomic variable.</p>
+
+        <h3>Example: Using atomic_int</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;atomic&gt;
+#include &lt;thread&gt;
+
+std::atomic_int counter(0); // Create an atomic integer variable
+
+void thread_function() {
+    for (int i = 0; i &lt; 100000; ++i) {
+        counter++; // Increment the atomic counter
+    }
+}
+
+int main() {
+    std::thread t1(thread_function);
+    std::thread t2(thread_function);
+
+    t1.join();
+    t2.join();
+
+    std::cout &lt;&lt; "Counter value: " &lt;&lt; counter &lt;&lt; std::endl; // Output: Counter value: 200000
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using memory order</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;atomic&gt;
+#include &lt;thread&gt;
+
+std::atomic&lt;bool&gt; ready(false);
+int data = 0;
+
+void thread_function1() {
+    data = 42;
+    ready.store(true, std::memory_order_release); // Store with release semantics
+}
+
+void thread_function2() {
+    while (!ready.load(std::memory_order_acquire)); // Load with acquire semantics
+    std::cout &lt;&lt; "Data value: " &lt;&lt; data &lt;&lt; std::endl; // Output: Data value: 42
+}
+
+int main() {
+    std::thread t1(thread_function1);
+    std::thread t2(thread_function2);
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;atomic&gt;</h3>
+        <p>&lt;atomic&gt; is useful when you need to work with shared data in a multithreaded program. It
+            provides a way to prevent race conditions and ensure that data is accessed and modified in a
+            consistent way. However, atomic variables can be more expensive than regular variables, so
+            they should only be used when necessary.</p>
+
+        <p>It's important to be aware of the different memory ordering constraints that are available and to
+            choose the appropriate memory order for your needs. Using relaxed memory order can improve
+            performance, but it can also make it more difficult to reason about the behavior of your
+            program. It is often best to use sequentially consistent memory order unless you have a good
+            reason to do otherwise.</p>
+    </main>
+</div>
+
+</html>

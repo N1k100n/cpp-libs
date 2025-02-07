@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Format library (C++20)</h1>
+        <hr>
+        <p>The &lt;format&gt; header provides a type-safe and extensible way to format objects into strings. It
+            replaces the older printf-style formatting with a more modern and flexible approach.</p>
+
+        <h2>Key features of std::format</h2>
+        <ul>
+            <li><b>Type safety:</b> <code>std::format</code> checks the types of the arguments at compile time,
+                preventing many common formatting errors.</li>
+            <li><b>Extensibility:</b> You can define custom formatters for your own types, allowing you to format
+                them in a way that makes sense for your application.</li>
+            <li><b>Localization:</b> <code>std::format</code> supports localization, so you can format numbers and
+                dates in a way that is appropriate for the user's locale.</li>
+            <li><b>Performance:</b> <code>std::format</code> is often faster than printf-style formatting, especially
+                for complex formats.</li>
+        </ul>
+
+        <h3>How to use &lt;format&gt;</h3>
+        <p>To use &lt;format&gt;, you need to include the &lt;format&gt; header file. You can then use the
+            <code>std::format</code> function to format objects into strings.</p>
+
+        <h3>Example: Basic formatting</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;format&gt;
+
+int main() {
+    std::string message = std::format("Hello, {}! The answer is {}.", "world", 42);
+    std::cout &lt;&lt; message &lt;&lt; std::endl; // Output: Hello, world! The answer is 42.
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Custom formatting</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;format&gt;
+
+struct Point {
+    int x;
+    int y;
+};
+
+template &lt;&gt;
+struct std::formatter&lt;Point&gt; {
+    template &lt;typename FormatContext&gt;
+    auto format(const Point&amp; p, FormatContext&amp; ctx) {
+        return std::format_to(ctx.out(), "({}, {})", p.x, p.y);
+    }
+};
+
+int main() {
+    Point p{10, 20};
+    std::string message = std::format("The point is {}.", p);
+    std::cout &lt;&lt; message &lt;&lt; std::endl; // Output: The point is (10, 20).
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;format&gt;</h3>
+        <p>&lt;format&gt; is useful whenever you need to format objects into strings. It is a powerful and flexible
+            tool that can be used for a wide variety of formatting tasks. In most cases, it is a better choice
+            than printf-style formatting, as it is type-safe and extensible.</p>
+
+        <p>It's important to be aware of the different format specifiers that are available. You can use these
+            specifiers to control the way that numbers, dates, and other objects are formatted. You can also
+            define your own custom formatters for your own types.</p>
+    </main>
+</div>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lib</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<div>
+    <main>
+        <h1>Ranges library (C++20)</h1>
+        <hr>
+        <p>The &lt;ranges&gt; header provides a way to work with ranges of elements in C++. Ranges are a generalization
+            of iterators that provide a more convenient and expressive way to manipulate sequences of data. The
+            &lt;ranges&gt; header defines a number of range concepts, views, and algorithms that can be used to
+            work with ranges.</p>
+
+        <h2>Key concepts and components in &lt;ranges&gt;</h2>
+        <ul>
+            <li><b>Range concepts:</b> Concepts that define the requirements for a type to be considered a range,
+                such as <code>std::ranges::range</code>, <code>std::ranges::input_range</code>,
+                <code>std::ranges::forward_range</code>, <code>std::ranges::bidirectional_range</code>, and
+                <code>std::ranges::random_access_range</code>.</li>
+            <li><b>Views:</b> Range adaptors that create new ranges by transforming or filtering existing ones,
+                such as <code>std::views::transform</code>, <code>std::views::filter</code>,
+                <code>std::views::take</code>, and <code>std::views::drop</code>.</li>
+            <li><b>Algorithms:</b> Range-based versions of standard algorithms, such as
+                <code>std::ranges::for_each</code>, <code>std::ranges::transform</code>,
+                <code>std::ranges::filter</code>, and <code>std::ranges::sort</code>.</li>
+        </ul>
+
+        <h3>How to use &lt;ranges&gt;</h3>
+        <p>To use &lt;ranges&gt;, you need to include the &lt;ranges&gt; header file. You can then use the range
+            concepts, views, and algorithms provided by the library.</p>
+
+        <h3>Example: Using views to transform and filter a range</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    auto even_squares = v | std::views::filter([](int n) { return n % 2 == 0; }) |
+        std::views::transform([](int n) { return n * n; });
+
+    for (int n : even_squares) {
+        std::cout &lt;&lt; n &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 4 16 36 64 100
+
+    return 0;
+}
+</code></pre>
+
+        <h3>Example: Using range-based algorithms</h3>
+        <pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {5, 2, 4, 1, 3};
+
+    std::ranges::sort(v); // Sort the vector using std::ranges::sort
+
+    for (int n : v) {
+        std::cout &lt;&lt; n &lt;&lt; " ";
+    }
+    std::cout &lt;&lt; std::endl; // Output: 1 2 3 4 5
+
+    return 0;
+}
+</code></pre>
+
+        <h3>When to use &lt;ranges&gt;</h3>
+        <p>&lt;ranges&gt; is useful when you need to work with sequences of data in a more expressive and composable
+            way than iterators allow. It provides a number of tools that can make it easier to write generic
+            code that can work with different types of ranges. It is often used in conjunction with the
+            &lt;algorithm&gt; header, which provides a number of algorithms that operate on ranges.</p>
+
+        <p>It's important to understand the different range concepts and to use the appropriate views and
+            algorithms for your needs. For example, you should use <code>std::views::transform</code> when you need
+            to transform the elements of a range, and you should use <code>std::views::filter</code> when you need
+            to filter the elements of a range.</p>
+    </main>
+</div>
+
+</html>

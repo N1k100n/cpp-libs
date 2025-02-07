@@ -16,7 +16,7 @@ body > nav {
   background-color: #282828;
   width: 100%;
   max-width: 300px;
-  overflow: scroll;
+  overflow: overlay;
 }
 
 body > nav > div {
@@ -30,6 +30,7 @@ body > nav > div {
 }
 
 body > nav > div > * {
+  display: flex;
   font-family: "Roboto", serif;
   font-weight: 400;
   font-size: 16px;
@@ -43,6 +44,11 @@ body > nav > div > button {
   cursor: pointer;
   font-weight: 200;
   padding-left: 10px;
+  width: 100%;
+}
+
+body > nav > div > button:hover {
+  color: #ffffff;
 }
 
 body > nav > div > span {
